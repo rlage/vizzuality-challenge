@@ -1,4 +1,7 @@
-.chart {
-  height: 65vh;
-  font-family: 'Open Sans', sans-serif;
+.basic {
+  height: 226px;
+}
+
+.gradient {
+  height: 84px;
 }

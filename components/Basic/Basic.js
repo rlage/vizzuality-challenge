@@ -1,9 +1,8 @@
 import React from 'react';
 import Circle from './Circle';
-import Label from './Label';
+import Label from '../Label/Label';
 
 const Basic = ({ data }) => {
-  console.log(data);
   const r = 6;
   const separator = 7;
   return(

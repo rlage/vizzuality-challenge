@@ -6,9 +6,9 @@ import styles from './Chart.module.css'
 const ChartContext = createContext();
 export const useChartDimensions = () => useContext(ChartContext);
 
-export const Chart = ({ dimensions, children }) => (
+export const Chart = ({ dimensions, children, cssClass}) => (
   <ChartContext.Provider value={dimensions}>
-    <svg className={styles.chart} width={dimensions.width} height={dimensions.height}>
+    <svg className={styles[cssClass]} width={dimensions.width}>
       <g transform={`translate(${dimensions.marginLeft}, ${dimensions.marginTop})`}>
         { children }
       </g>

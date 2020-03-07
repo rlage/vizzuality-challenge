@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Chart } from '../components/Chart';
 import Basic from '../components/Basic';
+import Gradient from '../components/Gradient';
 import { useChartDimensions } from '../components/utils';
+import styles from './index.module.css'
 
 const Index = () => {
   const [data, setData] = useState({});
@@ -20,10 +22,13 @@ const Index = () => {
 
   const [ref, dimensions] = useChartDimensions();
   return (
-    <div ref={ref}>
+    <div className={styles.app} ref={ref}>
       <p>Hello Next.js</p>
-      <Chart dimensions={dimensions}>
-        <Basic data={data.basic}></Basic>
+      <Chart cssClass='basic' dimensions={dimensions}>
+        <Basic data={data.basic} />
+      </Chart>
+      <Chart cssClass='gradient' dimensions={dimensions}>
+        <Gradient data={data.gradient} width={dimensions.boundedWidth}/>
       </Chart>
     </div>
   );

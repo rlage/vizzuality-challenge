@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Basic.module.css'
+import styles from './Label.module.css'
 
 const Label = ({ x, y, text }) => {
   return(
