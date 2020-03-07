@@ -1,0 +1,35 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.img {
+  vertical-align: middle;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+.name {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  vertical-align: middle;
+  color: #41484E;
+}
+
+.leftIcons {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.rightIcons {
+  grid-column: 10;
+  justify-items: end;
+}
+
+.rightIcons > .img {
+  padding-left: 10px;
+  justify-self: end;
+}
