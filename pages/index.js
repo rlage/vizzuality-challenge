@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Basic from '../components/Basic';
 import axios from 'axios';
+import { Chart } from '../components/Chart';
+import Basic from '../components/Basic';
+import { useChartDimensions } from '../components/utils';
 
 const Index = () => {
   const [data, setData] = useState({});
@@ -15,10 +17,14 @@ const Index = () => {
     }
     fetchData();
   }, []);
+
+  const [ref, dimensions] = useChartDimensions();
   return (
-    <div>
+    <div ref={ref}>
       <p>Hello Next.js</p>
-      <Basic data={data.basic}></Basic>
+      <Chart dimensions={dimensions}>
+        <Basic data={data.basic}></Basic>
+      </Chart>
     </div>
   );
 }
