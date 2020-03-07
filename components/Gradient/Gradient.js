@@ -1,8 +1,7 @@
 import React from 'react';
-import Label from '../Label/Label';
+import Label from '../Label';
 
 const Gradient = ({ data, width }) => {
-  console.log(data);
   const items = data ? data.items : null;
   {
     if(items) {
@@ -14,7 +13,7 @@ const Gradient = ({ data, width }) => {
                 items ? 
                   items.map((d,i) => {
                     return (
-                      <stop offset={`${(i+1) * (100 / data.items.length)}%`}  stop-color={d.color} />
+                      <stop offset={`${(i+1) * (100 / data.items.length)}%`}  stopColor={d.color} />
                     )
                   })
                 :
@@ -22,9 +21,9 @@ const Gradient = ({ data, width }) => {
               }
             </linearGradient>
           </defs>
-          <rect x={0} y={5} width="100%" height="7" fill="url('#myGradient')" />
+          <rect x={0} y={5} width={width} height="7" fill="url('#myGradient')" />
           <Label x={0} y={25} text={items[0].name}/>
-          <Label x={width-20} y={25} text={items[items.length-1].name}/>
+          <Label x={width-30} y={25} text={items[items.length-1].name}/>
         </g>
       )
     }

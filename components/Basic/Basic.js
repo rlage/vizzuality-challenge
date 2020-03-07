@@ -1,6 +1,6 @@
 import React from 'react';
 import Circle from './Circle';
-import Label from '../Label/Label';
+import Label from '../Label';
 
 const Basic = ({ data }) => {
   const r = 6;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Chart } from '../components/Chart';
 import Basic from '../components/Basic';
 import Gradient from '../components/Gradient';
+import Choropleth from '../components/Choropleth';
 import { useChartDimensions } from '../components/utils';
 import styles from './index.module.css'
 
@@ -29,6 +30,9 @@ const Index = () => {
       </Chart>
       <Chart cssClass='gradient' dimensions={dimensions}>
         <Gradient data={data.gradient} width={dimensions.boundedWidth}/>
+      </Chart>
+      <Chart cssClass='choropleth' dimensions={dimensions}>
+        <Choropleth data={data.choropleth} width={dimensions.boundedWidth}/>
       </Chart>
     </div>
   );
