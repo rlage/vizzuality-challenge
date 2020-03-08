@@ -8,7 +8,7 @@ import showImg from '../../assets/show.svg';
 import styles from './Headline.module.css';
 import Label from '../Label';
 
-const Headline = ({ data, children }) => {
+const Headline = ({ data, children, setShowModal }) => {
   const [ visible, setVisibility ] = useState(true);
   // const [ collapsedState, setCollapsedState ] = useState({
   //   'basic': false,
@@ -24,10 +24,10 @@ const Headline = ({ data, children }) => {
     let tooltipText = '';
     switch (e.target.id){
       case 'visibility':
-        tooltipText = visible ? 'Hide' : 'Show';
+        tooltipText = visible ? 'Hide layer' : 'Show layer';
         break;
       case 'info':
-        tooltipText = 'Info';
+        tooltipText = 'Layer info';
         break;
       case 'collapse':
         tooltipText = 'Collapse';
@@ -38,6 +38,11 @@ const Headline = ({ data, children }) => {
     setTooltipText(tooltipText);
   };
 
+  const handleClick = (e) => {
+    toggleVisibility();
+    setShowModal(e.target.id)
+  }
+
   const handleMouseOut = (e) => {
     setHoveredElement(null);
   };
@@ -45,12 +50,10 @@ const Headline = ({ data, children }) => {
   const toggleVisibility = () => {
     setVisibility(!visible);
   };
-  console.log(tooltipText)
   const visibilityImg = visible ? hideImg : showImg;
   {
     if(data) {
       const name = data.name;
-      const description = data.description;
       return(
         <>
           <div className={styles.container}>
@@ -75,7 +78,7 @@ const Headline = ({ data, children }) => {
                 id='info'
                 onMouseOver={(e) => handleMouseOver(e)}
                 onMouseOut={(e) => handleMouseOut(e)}
-                onClick={() => toggleVisibility()}
+                onClick={(e) => handleClick(e)}
                 className={styles.img}
                 src={infoImg}
               />
