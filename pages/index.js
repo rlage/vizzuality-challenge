@@ -84,20 +84,22 @@ const Index = () => {
               console.log(item);
               console.log(data[item]);
               return (
-                <Headline
-                  data={data[item]}
-                  setShowModal={updateShowModal}
-                  setShowCharts={updateShowCharts}
-                >
-                  {
-                    showCharts[data[item].type] ?
-                    <Chart cssClass={item} dimensions={dimensions}>
-                      {getChart(item, data[item])}
-                    </Chart>
-                    :
-                    null
-                  }
-                </Headline>
+                <div className={styles.container}>
+                  <Headline
+                    data={data[item]}
+                    setShowModal={updateShowModal}
+                    setShowCharts={updateShowCharts}
+                  >
+                    {
+                      showCharts[data[item].type] ?
+                      <Chart cssClass={item} dimensions={dimensions}>
+                        {getChart(item, data[item])}
+                      </Chart>
+                      :
+                      null
+                    }
+                  </Headline>
+                </div>
               )
             })
           }

@@ -25,7 +25,7 @@
   border-right: solid 1px #dbe2e6;
 }
 
-.tooltipBottom {
+/* .tooltipBottom {
   position: absolute;
   display: inline-block;
   border: solid 1px #dbe2e6;
@@ -48,7 +48,7 @@
   transform: rotate(-45deg);
   border-top: solid 1px #dbe2e6;
   border-right: solid 1px #dbe2e6;
-}
+} */
 
 .text {
   display: block;

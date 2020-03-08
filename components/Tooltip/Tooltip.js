@@ -5,9 +5,13 @@ const Tooltip = ({ content, element }) => {
   const width = 100;
   const height = 42;
   const orientation = element ? element.y < 67 ? "bottom" : "top" : "top";
+  // const x = element ? element.x - 100/2 + 16 : 0;
+  // const y = element ? orientation === "bottom" ? element.y + 16 + 15 : element.y - height - 16 : 0;
+  // const tooltipClass = orientation === "bottom" ? styles.tooltipBottom : styles.tooltip;
+
   const x = element ? element.x - 100/2 + 16 : 0;
-  const y = element ? orientation === "bottom" ? element.y + 16 + 15 : element.y - height - 16 : 0;
-  const tooltipClass = orientation === "bottom" ? styles.tooltipBottom : styles.tooltip;
+  const y = element ? element.y - height - 16 : 0;
+  const tooltipClass = styles.tooltip;
 
   if (element) {
     return (

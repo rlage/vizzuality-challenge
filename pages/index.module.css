@@ -2,3 +2,9 @@
   font-family: 'Open Sans', sans-serif;
   padding: 35px;
 }
+
+.container {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  padding-top: 13px;
+  padding-bottom: 15px;
+}

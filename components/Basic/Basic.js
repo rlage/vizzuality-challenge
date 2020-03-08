@@ -11,7 +11,7 @@ const Basic = ({ data }) => {
         data ?
           data.items.map((d,i) => {
             return (
-              <g transform={`translate(${0} ${(i * r * 2 + (separator * i))})`}>
+              <g transform={`translate(${0} ${(i * r * 2 + (separator * i) + 10)})`}>
                 <Circle
                   x={0}
                   y={0}
