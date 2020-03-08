@@ -51,42 +51,56 @@ const Index = () => {
       [name]: !showCharts[name]
     })
   }
+
+  const getChart = (name, item) => {
+    switch(name) {
+      case "basic":
+        return (
+          <Basic data={item} />
+        )
+      case "gradient":
+        return (
+          <Gradient
+            data={item}
+            width={dimensions.boundedWidth}
+          />
+        )
+      case "choropleth":
+        return (
+          <Choropleth
+            data={item}
+            width={dimensions.boundedWidth}
+          />
+      )
+    }
+  }
   
-  console.log(showCharts)
   return (
     <div className={styles.app} ref={ref}>
       {data && showCharts ? 
         <>
-          <Headline data={data.basic} setShowModal={updateShowModal} setShowCharts={updateShowCharts}>
-            {
-              showCharts[data.basic.type] ?
-              <Chart cssClass='basic' dimensions={dimensions}>
-                <Basic data={data.basic} />
-              </Chart>
-              :
-              null
-            }
-          </Headline>
-          <Headline data={data.gradient} setShowModal={updateShowModal} setShowCharts={updateShowCharts}>
-            {
-              showCharts[data.gradient.type] ?
-              <Chart cssClass='gradient' dimensions={dimensions}>
-                <Gradient data={data.gradient} width={dimensions.boundedWidth}/>
-              </Chart>
-              :
-              null
-            }
-          </Headline>
-          <Headline data={data.choropleth} setShowModal={updateShowModal} setShowCharts={updateShowCharts}>
-            {
-              showCharts[data.choropleth.type] ?
-              <Chart cssClass='choropleth' dimensions={dimensions}>
-                <Choropleth data={data.choropleth} width={dimensions.boundedWidth}/>
-              </Chart>
-              :
-              null
-            }
-          </Headline>
+          {
+            Object.keys(data).map((item) => {
+              console.log(item);
+              console.log(data[item]);
+              return (
+                <Headline
+                  data={data[item]}
+                  setShowModal={updateShowModal}
+                  setShowCharts={updateShowCharts}
+                >
+                  {
+                    showCharts[data[item].type] ?
+                    <Chart cssClass={item} dimensions={dimensions}>
+                      {getChart(item, data[item])}
+                    </Chart>
+                    :
+                    null
+                  }
+                </Headline>
+              )
+            })
+          }
           {
             showModal.display ? 
             <InfoModal content={data[showModal.layer].description} display={showModal.display} setShowModal={updateShowModal} />
