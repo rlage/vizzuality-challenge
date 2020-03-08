@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   //assetPrefix: '',
-  assetPrefix: !debug ? '/vizzuality-challenge/' : '',
+  assetPrefix: !debug ? 'https://rlage.github.io/vizzuality-challenge/' : '',
   webpack: (config, { dev }) => {
     // Perform customizations to webpack config
     // console.log('webpack');
