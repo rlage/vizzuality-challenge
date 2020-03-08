@@ -40,7 +40,7 @@ const Headline = ({ data, children, setShowModal }) => {
 
   const handleClick = (e) => {
     toggleVisibility();
-    setShowModal(e.target.id)
+    setShowModal(data.type)
   }
 
   const handleMouseOut = (e) => {

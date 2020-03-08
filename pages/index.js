@@ -28,7 +28,9 @@ const Index = () => {
     'layer': null,
     'display': false,
   });
+  console.log(data)
   const updateShowModal = (name) => {
+    console.log(name)
     setShowModal(
       {
         'layer': name,
@@ -56,7 +58,13 @@ const Index = () => {
               <Choropleth data={data.choropleth} width={dimensions.boundedWidth}/>
             </Chart>
           </Headline>
-          <InfoModal content={data.basic.description} display={showModal.display} setShowModal={updateShowModal} />
+          {
+            showModal.display ? 
+            <InfoModal content={data[showModal.layer].description} display={showModal.display} setShowModal={updateShowModal} />
+            :
+            null
+          }
+          
         </>
         :
         null
