@@ -33,3 +33,7 @@
   padding-left: 10px;
   justify-self: end;
 }
+
+.tooltip {
+  font-size: 12px;
+}

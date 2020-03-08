@@ -16,12 +16,12 @@ const Index = () => {
         'https://raw.githubusercontent.com/Vizzuality/front-end-code-challenge/master/data.json',
       );
       let dataObject = {};
-      result.data.forEach(d => dataObject[d.type] = d)
+      result.data.forEach(d => d.type !== 'timeline' ? dataObject[d.type] = d : null)
       setData(dataObject);
     }
     fetchData();
   }, []);
-
+  
   const [ref, dimensions] = useChartDimensions();
   return (
     <div className={styles.app} ref={ref}>

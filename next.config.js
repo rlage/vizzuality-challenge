@@ -21,7 +21,7 @@ module.exports = {
       }
     });
 
-    console.log(config.module.rules, dev);
+    // console.log(config.module.rules, dev);
     
     config.module.rules = config.module.rules.map(rule => {
       if(rule.loader === 'babel-loader') {
