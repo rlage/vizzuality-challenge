@@ -11,6 +11,7 @@ import InfoModal from '../components/InfoModal/InfoModal';
 
 const Index = () => {
   const [data, setData] = useState(null);
+  const [showCharts, setShowCharts] = useState(null);
   useEffect(() => {
     async function fetchData() {
       const result = await axios(
@@ -19,6 +20,13 @@ const Index = () => {
       let dataObject = {};
       result.data.forEach(d => d.type !== 'timeline' ? dataObject[d.type] = d : null)
       setData(dataObject);
+      const defaultShowCharts = Object.keys(dataObject).reduce((acc, item) => {
+        return {
+          ...acc,
+          [item]: true,
+        }
+      },{})
+      setShowCharts(defaultShowCharts);
     }
     fetchData();
   }, []);
@@ -28,9 +36,7 @@ const Index = () => {
     'layer': null,
     'display': false,
   });
-  console.log(data)
   const updateShowModal = (name) => {
-    console.log(name)
     setShowModal(
       {
         'layer': name,
@@ -38,25 +44,48 @@ const Index = () => {
       }
     )
   }
-  console.log(showModal)
+
+  const updateShowCharts = (name) => {
+    setShowCharts({
+      ...showCharts,
+      [name]: !showCharts[name]
+    })
+  }
+  
+  console.log(showCharts)
   return (
     <div className={styles.app} ref={ref}>
-      {data ? 
+      {data && showCharts ? 
         <>
-          <Headline data={data.basic} setShowModal={updateShowModal}>
-            <Chart cssClass='basic' dimensions={dimensions}>
-              <Basic data={data.basic} />
-            </Chart>
+          <Headline data={data.basic} setShowModal={updateShowModal} setShowCharts={updateShowCharts}>
+            {
+              showCharts[data.basic.type] ?
+              <Chart cssClass='basic' dimensions={dimensions}>
+                <Basic data={data.basic} />
+              </Chart>
+              :
+              null
+            }
           </Headline>
-          <Headline data={data.gradient} setShowModal={updateShowModal}>
-            <Chart cssClass='gradient' dimensions={dimensions}>
-              <Gradient data={data.gradient} width={dimensions.boundedWidth}/>
-            </Chart>
+          <Headline data={data.gradient} setShowModal={updateShowModal} setShowCharts={updateShowCharts}>
+            {
+              showCharts[data.gradient.type] ?
+              <Chart cssClass='gradient' dimensions={dimensions}>
+                <Gradient data={data.gradient} width={dimensions.boundedWidth}/>
+              </Chart>
+              :
+              null
+            }
           </Headline>
-          <Headline data={data.choropleth} setShowModal={updateShowModal}>
-            <Chart cssClass='choropleth' dimensions={dimensions}>
-              <Choropleth data={data.choropleth} width={dimensions.boundedWidth}/>
-            </Chart>
+          <Headline data={data.choropleth} setShowModal={updateShowModal} setShowCharts={updateShowCharts}>
+            {
+              showCharts[data.choropleth.type] ?
+              <Chart cssClass='choropleth' dimensions={dimensions}>
+                <Choropleth data={data.choropleth} width={dimensions.boundedWidth}/>
+              </Chart>
+              :
+              null
+            }
           </Headline>
           {
             showModal.display ? 

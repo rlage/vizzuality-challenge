@@ -6,15 +6,10 @@ import infoImg from '../../assets/info.svg';
 import arrowDownImg from '../../assets/arrow-down.svg';
 import showImg from '../../assets/show.svg';
 import styles from './Headline.module.css';
-import Label from '../Label';
 
-const Headline = ({ data, children, setShowModal }) => {
+const Headline = ({ data, children, setShowModal, setShowCharts }) => {
   const [ visible, setVisibility ] = useState(true);
-  // const [ collapsedState, setCollapsedState ] = useState({
-  //   'basic': false,
-  //   'gradient': false,
-  //   'choropleth': false
-  // });
+  const [ collapsed, setCollapsed] = useState(false);
   const [ tooltipText, setTooltipText ] = useState('');
   const [ hoveredElement, setHoveredElement ] = useState(null);
 
@@ -30,7 +25,7 @@ const Headline = ({ data, children, setShowModal }) => {
         tooltipText = 'Layer info';
         break;
       case 'collapse':
-        tooltipText = 'Collapse';
+        tooltipText = collapsed ? 'Expand' : 'Collapse';
         break;
       default:
         tooltipText = '';
@@ -38,8 +33,8 @@ const Headline = ({ data, children, setShowModal }) => {
     setTooltipText(tooltipText);
   };
 
-  const handleClick = (e) => {
-    toggleVisibility();
+  const handleInfoClick = (e) => {
+    setVisibility(!visible);
     setShowModal(data.type)
   }
 
@@ -47,9 +42,11 @@ const Headline = ({ data, children, setShowModal }) => {
     setHoveredElement(null);
   };
 
-  const toggleVisibility = () => {
-    setVisibility(!visible);
+  const handleCollapseClick = (e) => {
+    setShowCharts(data.type);
+    setCollapsed(!collapsed)
   };
+  
   const visibilityImg = visible ? hideImg : showImg;
   {
     if(data) {
@@ -70,7 +67,7 @@ const Headline = ({ data, children, setShowModal }) => {
                 id='visibility'
                 onMouseOver={(e) => handleMouseOver(e)}
                 onMouseOut={(e) => handleMouseOut(e)}
-                onClick={() => toggleVisibility()}
+                onClick={() => setVisibility(!visible)}
                 className={styles.img}
                 src={visibilityImg}
               />
@@ -78,7 +75,7 @@ const Headline = ({ data, children, setShowModal }) => {
                 id='info'
                 onMouseOver={(e) => handleMouseOver(e)}
                 onMouseOut={(e) => handleMouseOut(e)}
-                onClick={(e) => handleClick(e)}
+                onClick={(e) => handleInfoClick(e)}
                 className={styles.img}
                 src={infoImg}
               />
@@ -86,6 +83,7 @@ const Headline = ({ data, children, setShowModal }) => {
                 id='collapse'
                 onMouseOver={(e) => handleMouseOver(e)}
                 onMouseOut={(e) => handleMouseOut(e)}
+                onClick={(e) => handleCollapseClick(e)}
                 className={styles.img}
                 src={arrowDownImg}
               />
