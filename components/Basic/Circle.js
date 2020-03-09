@@ -2,7 +2,7 @@ import React from 'react';
 
 const Circle = ({ x, y, color, radius }) => {
   return(
-    <circle cx={x} cy={y} fill={color} r={radius} ></circle>
+    <circle data-testid='circle' cx={x} cy={y} fill={color} r={radius} ></circle>
   )
 }
 
