@@ -1,5 +1,5 @@
 const prod = process.env.NODE_ENV === 'production'
 
 module.exports = {
-  'process.env.BACKEND_URL': prod ? '/vizzuality-challenge/' : ''
+  'process.env.BACKEND_URL': prod ? 'https://rlage.github.io/vizzuality-challenge/' : ''
 }
